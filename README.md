@@ -1,10 +1,10 @@
-How to setup?
+How to setup
 
-Clone backend repository from ->  https://github.com/Cnd96/employee-api.git
+Clone backend repository from -  https://github.com/Cnd96/employee-api.git
 
-Navigate to project directory -> cd employee-api
+Navigate to project directory - cd employee-api
 
-Install dependencies –> npm install
+Install dependencies – npm install
 
 Use one of the following methods to run the backend locally.
 

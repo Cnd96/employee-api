@@ -22,17 +22,22 @@ export class EmployeeRepository {
     const pageSize = options.pageSize;
     const page = options.page;
 
+    const searchTerm = options.searchTerm || '';
+
     const employeesWithCount = await this.sequelize.query<EmployeeWithCount>(
       `SELECT *, COUNT(*) OVER() AS count
       FROM public.employee
+      where first_name ILIKE :searchTerm OR last_name ILIKE :searchTerm
       ORDER BY id
       OFFSET :pageOffset
       LIMIT :pageSize`,
       {
         type: QueryTypes.SELECT,
+        logging: true,
         replacements: {
           pageSize: pageSize ? pageSize : null,
           pageOffset: pageSize && page && page > 1 ? pageSize * (page - 1) : 0,
+          searchTerm: `%${searchTerm}%`,
         },
       },
     );

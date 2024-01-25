@@ -5,11 +5,12 @@ Navigate to the project directory -> cd employee-api
 
 Install the dependencies -> npm install
 
-How to run
-With Docker
-Build the Docker image -> docker build -t : . ii. Run the Docker image -> docker run -p 3001:3001 -d --name :
+Use one of the following methods to run the backend locally. 
 
-Without Docker
-npm run dev
+1.	npm run start:dev
+2.	Using Docker
+    •	docker build -t employee-api .
+    •	docker run -p 3001:3001 employee-api
+    
+Once the app is running, you can go to http://localhost:3001/api to read the API documentation.
 
-Open [http://localhost:3001/api] with your browser to see the swagger environment.

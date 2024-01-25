@@ -4,7 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EmployeeModule } from './employee/employee.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-
+import { APP_FILTER } from '@nestjs/core';
+import { HttpErrorFilter } from './_shared/http-error-filter';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -14,11 +15,11 @@ import { SequelizeModule } from '@nestjs/sequelize';
     SequelizeModule.forRootAsync({
       useFactory: () => ({
         dialect: 'postgres',
-        host: process.env.DB_HOST || 'localhost',
+        host: process.env.DB_HOST ,
         port: 5432,
-        username: process.env.DB_USER || 'flyttsmart',
-        password: process.env.DB_PASSWORD || 'flyttsmart',
-        database: process.env.DB_NAME || 'employee',
+        username: process.env.DB_USER ,
+        password: process.env.DB_PASSWORD ,
+        database: process.env.DB_NAME ,
         logging: false,
         synchronize: false,
       }),
@@ -26,6 +27,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
     EmployeeModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: HttpErrorFilter,
+    },
+  ],
 })
 export class AppModule {}

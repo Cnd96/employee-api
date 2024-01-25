@@ -95,5 +95,5 @@ export class EmployeeFilterOptions {
   @IsNumber()
   @Min(1)
   @ToInt()
-  readonly page: number = 1;
+  readonly page?: number = 1;
 }

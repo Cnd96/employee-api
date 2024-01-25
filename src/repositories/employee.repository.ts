@@ -32,7 +32,7 @@ export class EmployeeRepository {
         type: QueryTypes.SELECT,
         replacements: {
           pageSize: pageSize ? pageSize : null,
-          pageOffset: pageSize && page && page > 1 ? pageSize * page : 0,
+          pageOffset: pageSize && page && page > 1 ? pageSize * (page - 1) : 0,
         },
       },
     );

@@ -12,6 +12,6 @@ Use one of the following methods to run the backend locally.
 
 2. Without  Docker
    1. Install dependencies – npm install
-   2. npm run dev
+   2. npm run start:dev
 
 Once the app is running, you can go to http://localhost:3001/api to read the API documentation.

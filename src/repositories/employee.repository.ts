@@ -16,6 +16,24 @@ type EmployeeWithCount = EmployeeEntity & {
 export class EmployeeRepository {
   constructor(protected readonly sequelize: Sequelize) {}
 
+  public async getEmployee(idd: string): Promise<any> {
+    const employee = await this.sequelize.query<EmployeeWithCount>(
+      `SELECT *
+      FROM public.employee
+      where id = :idd`,
+      {
+        type: QueryTypes.SELECT,
+        logging: true,
+        replacements: {
+          idd: idd,
+        },
+      },
+    );
+    return {
+      employee: employee[0],
+    };
+  }
+
   public async getEmployeeList(
     options?: EmployeeFilterOptions,
   ): Promise<EmployeeList> {
@@ -33,7 +51,7 @@ export class EmployeeRepository {
       LIMIT :pageSize`,
       {
         type: QueryTypes.SELECT,
-        logging: true,
+        logging: false,
         replacements: {
           pageSize: pageSize ? pageSize : null,
           pageOffset: pageSize && page && page > 1 ? pageSize * (page - 1) : 0,

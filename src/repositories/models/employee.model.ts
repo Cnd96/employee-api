@@ -12,6 +12,10 @@ import {
   MinLength,
 } from 'class-validator';
 
+export interface ILabeledValue {
+  label: string;
+}
+
 export type EmployeeEntity = {
   id: string;
   first_name: string;

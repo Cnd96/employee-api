@@ -32,6 +32,15 @@ export class EmployeeController {
     return this.employeeService.getEmployeeList(options);
   }
 
+  @Get(':id')
+  @ApiOperation({
+    summary: 'Get all employees',
+  })
+  public async getEmployee(@Param('id') id: string): Promise<EmployeeList> {
+    console.log('reeeeeeeeeees', id);
+    return this.employeeService.getEmployee(id);
+  }
+
   @Post('')
   @ApiOperation({
     summary: 'Create an Employee',
